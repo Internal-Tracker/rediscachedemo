@@ -5,7 +5,7 @@ using rediscachedemoazure.Repository;
 
 namespace rediscachedemoazure.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class loginController : ControllerBase
     {
