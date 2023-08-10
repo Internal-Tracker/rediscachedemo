@@ -2,5 +2,6 @@
 {
     public class AccountCreateRequestDtocs
     {
+        public decimal initialDepositAmount { get; set; }
     }
 }
