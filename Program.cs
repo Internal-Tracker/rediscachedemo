@@ -1,4 +1,6 @@
 
+using rediscachedemoazure.Extension;
+using rediscachedemoazure.Middleware;
 using rediscachedemoazure.Repository;
 
 namespace rediscachedemoazure
@@ -8,9 +10,11 @@ namespace rediscachedemoazure
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddApplicationInsightsTelemetry("6a7ea2b1-6044-45fb-b9f6-8f8804da6253");
 
             // Add services to the container.
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<ExceptionMiddleware>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -30,7 +34,7 @@ namespace rediscachedemoazure
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.addExceptionMiddleware();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

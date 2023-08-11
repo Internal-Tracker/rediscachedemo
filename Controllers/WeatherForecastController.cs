@@ -19,15 +19,27 @@ namespace rediscachedemoazure.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IActionResult Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            int res =0;
+            int div = 0;
+
+            int num = 5;
+            //try
+            //{
+              res =  num / div;
+               
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex.Message.ToString(), ex);
+            //}
+            //finally
+            //{
+            //    _logger.LogInformation("finally block");
+            //}
+            return Ok(res);
         }
     }
 }
