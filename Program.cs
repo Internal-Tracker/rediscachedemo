@@ -2,6 +2,8 @@
 using rediscachedemoazure.Extension;
 using rediscachedemoazure.Middleware;
 using rediscachedemoazure.Repository;
+using rediscachedemoazure.TableStorage.Interface;
+using rediscachedemoazure.TableStorage.Service;
 
 namespace rediscachedemoazure
 {
@@ -13,6 +15,7 @@ namespace rediscachedemoazure
             builder.Services.AddApplicationInsightsTelemetry("6a7ea2b1-6044-45fb-b9f6-8f8804da6253");
 
             // Add services to the container.
+            builder.Services.AddScoped<ITableStorageService,TableStorageService>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddTransient<ExceptionMiddleware>();
             builder.Services.AddControllers();
@@ -31,9 +34,10 @@ namespace rediscachedemoazure
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+               
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GroceryStoreAPI v1"));
             app.addExceptionMiddleware();
             app.UseHttpsRedirection();
 
