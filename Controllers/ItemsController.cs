@@ -6,7 +6,7 @@ using rediscachedemoazure.TableStorage.Service;
 
 namespace rediscachedemoazure.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ItemsController : ControllerBase
     {
